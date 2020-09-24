@@ -82,7 +82,7 @@ double ft_find_min(grad_point point)
 		min = point.x1;
 	else if ((point.x2 < point.x1) && (point.x2 < point.x3))
 		min = point.x2;
-	else if ((point.x3 < point.x1) && (point.x3 < point.x2))
+	else
 		min = point.x3;
 	return (min);
 }

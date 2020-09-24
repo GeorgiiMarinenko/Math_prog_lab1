@@ -11,6 +11,9 @@ int	main(void)
 	double	eps = 0.001;
 	double	tk;
 	double	c = 0.25;
+	double	x1base;
+	double	x2base;
+	double	x3base;
 
 #pragma region Task1_var
 	double	x1;
@@ -30,13 +33,17 @@ int	main(void)
 	cout << "min/max: ";
 	cin >> act;
 	cout << "x1 = ";
-	cin >> x1;
+	cin >> x1base;
 	cout << "x2 = ";
-	cin >> x2;
+	cin >> x2base;
 	cout << "x3 = ";
-	cin >> x3;
+	cin >> x3base;
 	cout << "step = ";
 	cin >> tk;
+
+	x1 = x1base;
+	x2 = x2base;
+	x3 = x3base;
 
 	cur_func = ft_function_V(x1, x2, x3);
 	p = grad(x1, x2, x3);
@@ -83,10 +90,16 @@ int	main(void)
 	cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
 #pragma endregion
 */
+	x1 = x1base;
+	x2 = x2base;
+	x3 = x3base;
+	cur_func = ft_function_V(x1, x2, x3);
+	p = grad(x1, x2, x3);
+	next_func = ft_function_V(x1 - p.x1 * tk, x2 - p.x2 * tk, x3 - p.x3 * tk);
+	while(abs(cur_func-next_func) > eps)
+	{
+		tk = ft_find_min()
+	}
 
-while(abs(cur_func-next_func) > eps)
-{
-
-}
 	return (0);
 }
