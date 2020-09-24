@@ -1,14 +1,18 @@
 #include <iostream>
 #include <string>
+#include "../SRCS/tools.cpp"
 #include "../INCLUDES/header.h"
 
 using namespace std;
 int	main(void)
 {
+	int cnt = 0;
+	int isMax;
 	double	eps = 0.001;
 	double	tk;
 	double	c = 0.25;
 
+#pragma region Task1_var
 	double	x1;
 	double	x2;
 	double	x3;
@@ -21,6 +25,7 @@ int	main(void)
 	double	next_func;
 
 	string act;
+#pragma endregion
 
 	cout << "min/max: ";
 	cin >> act;
@@ -37,16 +42,14 @@ int	main(void)
 	p = grad(x1, x2, x3);
 	next_func = ft_function_V(x1 - p.x1 * tk, x2 - p.x2 * tk, x3 - p.x3 * tk);
 
-	double E = 0.1;
-	int cnt = 0;
-	int isMax;
 	if (act == "min")
 		isMax = -1;
 	else
 		isMax = 1;
-	// (0.725, -0.65, 3.325)
-	// cout << "current  = " << cur_func << endl;
-	// cout << "next = " << next_func << endl;
+
+
+/*
+#pragma region TASK1
 	while(abs(cur_func-next_func) > eps)
 	{
 		cout << "TK: " << tk << endl;
@@ -60,8 +63,6 @@ int	main(void)
 		else
 		{
 			tk *= c;
-			cout << "TK: " << tk << endl;
-
 		}
 		cnt++;
 		if (cnt == 100 || abs(next_func) > 10e10)
@@ -72,12 +73,6 @@ int	main(void)
 				cout << "Нет локального минимума" << endl;
 			break;
 		}
-		cout << "Current function: " << cur_func <<  endl;
-		cout << "Next function: " << next_func << endl;
-		cout << "TK: " << tk << endl;
-		cout << x1 << " " << x2 << " " << x3 << endl;
-		cout << p.x1 << " " << p.x2 << " " << p.x3 <<  endl;
-		cout <<  endl << endl;
 		cur_func = next_func;
 		next_func = ft_function_V(x1 - p.x1 * tk, x2 - p.x2 * tk, x3 - p.x3 * tk);
 	}
@@ -86,5 +81,12 @@ int	main(void)
 	cout << "Next function: " << next_func << endl;
 	cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
 	cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
+#pragma endregion
+*/
+
+while(abs(cur_func-next_func) > eps)
+{
+
+}
 	return (0);
 }

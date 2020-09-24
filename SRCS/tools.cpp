@@ -1,5 +1,6 @@
 #include "../INCLUDES/header.h"
 
+#pragma region G_FUnctions
 double	ft_function(double x1, double x2, double x3)
 {
 	double	rez;
@@ -27,8 +28,9 @@ double	ft_diff_func_x3(double x1, double x2, double x3)
 	rez = 2*x3 - x1;
 	return (rez);
 }
+#pragma endregion
 
-
+#pragma region V_FUnctions
 double	ft_function_V(double x1, double x2, double x3)
 {
 	double	rez;
@@ -56,6 +58,8 @@ double	ft_diff_func_x3_V(double x1, double x2, double x3)
 	rez = -2*x3 - x2 + 6;
 	return (rez);
 }
+#pragma endregion
+
 grad_point grad(double cx1, double cx2, double cx3)
 {
 	//double(*func)(double,double,double)
@@ -69,4 +73,16 @@ grad_point grad(double cx1, double cx2, double cx3)
 	double	z = ft_diff_func_x3_V(cx1, cx2, cx3);
 	point.x3 = z;
 	return (point);
+}
+
+double ft_find_min(grad_point point)
+{
+	double min;
+	if ((point.x1 < point.x2) && (point.x1 < point.x3))
+		min = point.x1;
+	else if ((point.x2 < point.x1) && (point.x2 < point.x3))
+		min = point.x2;
+	else if ((point.x3 < point.x1) && (point.x3 < point.x2))
+		min = point.x3;
+	return (min);
 }
