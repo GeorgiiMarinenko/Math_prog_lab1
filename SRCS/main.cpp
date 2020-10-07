@@ -57,9 +57,6 @@ int	main(void)
 #pragma region TASK1
 	while(abs(cur_func-next_func) > eps)
 	{
-		cout << "Current function: " << cur_func << endl;
-		cout << "Next function: " << next_func << endl;
-		cout << "?? " << next_func * (double)isMax << endl;
 		if (((cur_func > next_func) && (isMax == -1)) || ((cur_func < next_func) && (isMax == 1)))
 		{
 			x1 += isMax * tk * p.x1;
@@ -84,14 +81,12 @@ int	main(void)
 		next_func = ft_function(x1 + p.x1 * tk * isMax, x2 + p.x2 * tk * isMax, x3 + p.x3 * tk * isMax);
 	}
 	cout << "__________________" << endl;
-	cout << "CNT = " << cnt << endl;
 	cout << "Current function: " << cur_func << endl;
 	cout << "Next function: " << next_func << endl;
 	cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
 	cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
 #pragma endregion
 
-	cout << "TASK 2" << endl;
 	x1 = x1base;
 	x2 = x2base;
 	x3 = x3base;
@@ -115,7 +110,8 @@ int	main(void)
 		p = grad(x1, x2, x3);
 		tk = tk_base;
 	}
-	cout << "\n\n__________________" << endl;
+	cout << "\n__________________" << endl;
+	cout << "TASK 2" << endl;
 	cout << "Current function: " << cur_func << endl;
 	cout << "Next function: " << next_func << endl;
 	cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
