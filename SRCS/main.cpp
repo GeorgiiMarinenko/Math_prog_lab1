@@ -59,7 +59,8 @@ int	main(void)
 	{
 		cout << "Current function: " << cur_func << endl;
 		cout << "Next function: " << next_func << endl;
-		if (cur_func > next_func)
+		cout << "?? " << next_func * (double)isMax << endl;
+		if (((cur_func > next_func) && (isMax == -1)) || ((cur_func < next_func) && (isMax == 1)))
 		{
 			x1 += isMax * tk * p.x1;
 			x2 += isMax * tk * p.x2;
@@ -78,10 +79,6 @@ int	main(void)
 				cout << "Нет локального минимума" << endl;
 			break;
 		}
-		// cout << "Current function: " << cur_func << endl;
-		// cout << "Next function: " << next_func << endl;
-		// cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
-		// cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
 		cnt++;
 		cur_func = next_func;
 		next_func = ft_function(x1 + p.x1 * tk * isMax, x2 + p.x2 * tk * isMax, x3 + p.x3 * tk * isMax);
