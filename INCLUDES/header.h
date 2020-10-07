@@ -27,7 +27,5 @@ double	ft_diff_func_x3_V(double x1, double x2, double x3);
 
 
 grad_point grad(double cx1, double cx2, double cx3);
-
-double ft_find_min(grad_point point);
 #endif
 

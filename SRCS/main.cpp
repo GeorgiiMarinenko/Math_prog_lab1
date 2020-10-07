@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "../SRCS/tools.cpp"
 #include "../INCLUDES/header.h"
 
 using namespace std;
@@ -9,6 +8,7 @@ int	main(void)
 	int cnt = 0;
 	int isMax;
 	double	eps = 0.001;
+	double	tk_base;
 	double	tk;
 	double	c = 0.25;
 	double	x1base;
@@ -39,28 +39,27 @@ int	main(void)
 	cout << "x3 = ";
 	cin >> x3base;
 	cout << "step = ";
-	cin >> tk;
+	cin >> tk_base;
 
 	x1 = x1base;
 	x2 = x2base;
 	x3 = x3base;
+	tk = tk_base;
 
-	cur_func = ft_function_V(x1, x2, x3);
+	cur_func = ft_function(x1, x2, x3);
 	p = grad(x1, x2, x3);
-	next_func = ft_function_V(x1 - p.x1 * tk, x2 - p.x2 * tk, x3 - p.x3 * tk);
-
+	cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl << endl;
 	if (act == "min")
 		isMax = -1;
 	else
 		isMax = 1;
-
-
-/*
+	next_func = ft_function(x1 + p.x1 * tk * isMax, x2 + p.x2 * tk * isMax, x3 + p.x3 * tk * isMax);
 #pragma region TASK1
 	while(abs(cur_func-next_func) > eps)
 	{
-		cout << "TK: " << tk << endl;
-		if (cur_func < isMax * next_func)
+		cout << "Current function: " << cur_func << endl;
+		cout << "Next function: " << next_func << endl;
+		if (cur_func > next_func)
 		{
 			x1 += isMax * tk * p.x1;
 			x2 += isMax * tk * p.x2;
@@ -71,7 +70,6 @@ int	main(void)
 		{
 			tk *= c;
 		}
-		cnt++;
 		if (cnt == 100 || abs(next_func) > 10e10)
 		{
 			if(isMax == 1)
@@ -80,26 +78,50 @@ int	main(void)
 				cout << "Нет локального минимума" << endl;
 			break;
 		}
+		// cout << "Current function: " << cur_func << endl;
+		// cout << "Next function: " << next_func << endl;
+		// cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
+		// cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
+		cnt++;
 		cur_func = next_func;
-		next_func = ft_function_V(x1 - p.x1 * tk, x2 - p.x2 * tk, x3 - p.x3 * tk);
+		next_func = ft_function(x1 + p.x1 * tk * isMax, x2 + p.x2 * tk * isMax, x3 + p.x3 * tk * isMax);
 	}
 	cout << "__________________" << endl;
+	cout << "CNT = " << cnt << endl;
 	cout << "Current function: " << cur_func << endl;
 	cout << "Next function: " << next_func << endl;
 	cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
 	cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
 #pragma endregion
-*/
+
+	cout << "TASK 2" << endl;
 	x1 = x1base;
 	x2 = x2base;
 	x3 = x3base;
-	cur_func = ft_function_V(x1, x2, x3);
-	p = grad(x1, x2, x3);
-	next_func = ft_function_V(x1 - p.x1 * tk, x2 - p.x2 * tk, x3 - p.x3 * tk);
-	while(abs(cur_func-next_func) > eps)
-	{
-		tk = ft_find_min()
-	}
+	tk = tk_base;
+	int	iter = 0;
 
+	cur_func = ft_function(x1, x2, x3);
+	p = grad(x1, x2, x3);
+	while((pow(p.x1,2) + pow(p.x2,2) + pow(p.x3,2)) > eps)
+	{
+		next_func = ft_function(x1 + p.x1 * tk * isMax, x2 + p.x2 * tk * isMax, x3 + p.x3 * tk * isMax);
+		while (next_func > cur_func)
+		{
+			tk /= 2;
+			next_func = ft_function(x1 + p.x1 * tk * isMax, x2 + p.x2 * tk * isMax, x3 + p.x3 * tk * isMax);
+		}
+		cur_func = next_func;
+		x1 += isMax * tk * p.x1;
+		x2 += isMax * tk * p.x2;
+		x3 += isMax * tk * p.x3;
+		p = grad(x1, x2, x3);
+		tk = tk_base;
+	}
+	cout << "\n\n__________________" << endl;
+	cout << "Current function: " << cur_func << endl;
+	cout << "Next function: " << next_func << endl;
+	cout << "Points x1,x2,x3: " << x1 << " " << x2 << " " << x3 << endl;
+	cout << "Points x1,x2,x3: " << p.x1 << " " << p.x2 << " " << p.x3 << endl;
 	return (0);
 }

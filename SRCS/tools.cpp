@@ -66,23 +66,23 @@ grad_point grad(double cx1, double cx2, double cx3)
 	double	rez;
 	grad_point point;
 
-	double	x = ft_diff_func_x1_V(cx1, cx2, cx3);
+	double	x = ft_diff_func_x1(cx1, cx2, cx3);
 	point.x1 = x;
-	double	y = ft_diff_func_x2_V(cx1, cx2, cx3);
+	double	y = ft_diff_func_x2(cx1, cx2, cx3);
 	point.x2 = y;
-	double	z = ft_diff_func_x3_V(cx1, cx2, cx3);
+	double	z = ft_diff_func_x3(cx1, cx2, cx3);
 	point.x3 = z;
 	return (point);
 }
 
-double ft_find_min(grad_point point)
-{
-	double min;
-	if ((point.x1 < point.x2) && (point.x1 < point.x3))
-		min = point.x1;
-	else if ((point.x2 < point.x1) && (point.x2 < point.x3))
-		min = point.x2;
-	else
-		min = point.x3;
-	return (min);
-}
+// double ft_find_min(grad_point point)
+// {
+// 	double min;
+// 	if ((point.x1 < point.x2) && (point.x1 < point.x3))
+// 		min = point.x1;
+// 	else if ((point.x2 < point.x1) && (point.x2 < point.x3))
+// 		min = point.x2;
+// 	else
+// 		min = point.x3;
+// 	return (min);
+// }
